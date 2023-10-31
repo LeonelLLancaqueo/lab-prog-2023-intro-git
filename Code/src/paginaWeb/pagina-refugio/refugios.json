@@ -1,0 +1,23 @@
+[{
+    
+    "img": "../img/refugio-frey/refugio-frey-1.jpg",
+    "img2": "../img/refugio-frey/refugio-frey-2.jpg",
+    "img3": "../img/refugio-frey/refugio-frey-3.jpg"
+    
+},
+{
+    "img": "../img/refugio-laguna-negra/laguna-negra-refugio-1.jpg",
+    "img2": "../img/refugio-laguna-negra/laguna-negra-refugio-2.jpg",
+    "img3": "../img/refugio-laguna-negra/laguna-negra-refugio-3.jpg"
+},
+{
+    "img": "../img/refugio-lopez/refugio-lopez-1.jpeg",
+    "img2": "../img/refugio-lopez/refugio-lopez-2.jpeg",
+    "img3": "../img/refugio-lopez/refugio-lopez-3.jpg"
+},
+{
+    "img": "../img/refugio-jakob/refugio-jakob-1.jpg",
+    "img2": "../img/refugio-jakob/refugio-jakob-2.jpg",
+    "img3": "../img/refugio-jakob/refugio-jakob-3.jpg"
+}
+]
