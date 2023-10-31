@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+}
+
+.row {
+    border: 1px solid;
+    border-color: black;
+    
+}
+
+.col{
+    background-color: orange;
+    color: white;
+    padding: 20px;
+    border: 1px solid red;
+    margin: auto;
+}
+
+.col card{
+    position: relative;
+}
+nav {
+    padding-bottom: 2rem;
+    margin: 1rem;
+    
+    
+}
+.container-fluid{
+    position: relative;
+    display: inline-block;
+    
+}
+.imgbanner{
+    border-radius: 30px;
+}
+.text-banner{
+    bottom: 5rem;
+    position: absolute;
+}
+.div-table {
+    border-radius: 20px;
+}
+.card-body{
+    background-color: darkgray;
+}
