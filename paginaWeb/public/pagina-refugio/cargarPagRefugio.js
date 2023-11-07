@@ -1,10 +1,12 @@
 
-const paramURL=window.location.search;
+
+paramURL=window.location.search;
 
 const objParametro= new URLSearchParams(paramURL);
 
 
 const idRefugio= parseInt(objParametro.get('id'),10);
+
 
 
 
@@ -19,6 +21,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
 const slide= document.querySelector(".slide ul");
 
+const form_action= document.querySelector(".form-person");
 
 function cargarRefugio(refugio){
 
@@ -36,6 +39,6 @@ function cargarRefugio(refugio){
     li_img2.appendChild(img2);
     li_img3.appendChild(img3);
 
-
+    form_action.action="refugio.html?id="+idRefugio;
     
 }

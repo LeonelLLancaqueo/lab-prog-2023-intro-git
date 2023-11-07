@@ -18,7 +18,7 @@ const li_otro= document.createElement("li");
 const li_inicio_a= document.createElement("a");
 li_inicio_a.textContent="Inicio";
 const li_nosotros_a= document.createElement("a");
-li_inicio_a.href="../index.ejs";
+li_inicio_a.href="/";
 
 li_nosotros_a.textContent="Nosotros";
 const li_historia_a= document.createElement("a");

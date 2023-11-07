@@ -2,7 +2,13 @@
 const gridRefugio=  document.querySelector(".container-refugios-grid");
 
 // obtenemos el archivo 
+
+
+
 document.addEventListener('DOMContentLoaded',() =>{
+
+
+
     fetch('datos.json').then(
         data => {
             return data.json()
@@ -27,8 +33,9 @@ function cargarRefugios (datos)  {
             
             let enlace= document.createElement("a");
 
-            enlace.href="refugio.ejs/"+refugio.id;
-            //enlace.href="/pagina-refugio/refugio.html?id="+refugio.id; 
+            
+          
+            enlace.href="/pagina-refugio/refugio.html?id="+refugio.id; 
 
             let nombre= document.createElement("h3");
             nombre.textContent= refugio.nombre;
