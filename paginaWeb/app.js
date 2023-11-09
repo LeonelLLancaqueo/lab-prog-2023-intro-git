@@ -3,6 +3,7 @@
 const exp = require('constants');
 const express= require('express');
 
+const path= require('path')
 
 
 const {MongoClient, ServerApiVersion}= require('mongodb');
@@ -26,19 +27,10 @@ app.use(express.json());
 
 
 
-app.get( "/refugios", async (req,res) =>{
- 
-    const refugios= await client.db("myDB").collection('refugios_content').find({}).toArray();
-    console.log(refugios);
-
-    return res.send(refugios).status(200);  
-    
-} 
-);
 app.set('view engine','ejs');
 
 app.use('/', express.static('public'));
-app.use('/', express.static('public/pagina-refugio'));
+app.use('/refugio', express.static('public/pagina-refugio'));
 
 app.use(express.urlencoded({extended: true}))
 
@@ -46,6 +38,21 @@ app.use(express.urlencoded({extended: true}))
 /* En proceso */
 
 
+app.get( "/refugios", async (req,res) =>{
+ 
+  try{
+    const refugios= await client.db("myDB").collection('refugios_content').find({}).toArray();
+    console.log(refugios);
+
+    return res.send(refugios).status(200); 
+  }catch(errr){
+    console.log("Errorrrrrrrrrr");  
+    return res.status(404)
+  }
+   
+  
+} 
+);
 app.get( '/',(req,res) =>{
     
     
@@ -53,12 +60,8 @@ app.get( '/',(req,res) =>{
     
 });
 
-app.post( '/pagina-refugio/refugio.html?:id',async (req,res) =>{
+app.post( '/refugio/:id',async (req,res) =>{
     
-    console.log(req.params.id);
-    console.log("el formulario redireciona bien");
-
-    console.log(req.body);
       
   
 
@@ -70,25 +73,27 @@ app.post( '/pagina-refugio/refugio.html?:id',async (req,res) =>{
       console.log("error insertar una persona en la db");
     }
 
-    return res.status(200);    
-  
-
-
+    res.render('refugio', {id : req.params.id})    
 });
+
+app.get( '/refugio/:id', (req,res) =>{
+      
+  res.render('refugio', {id : req.params.id});    
+  
+});
+
+
+
 app.listen(port, function () {
     console.log("hola mundo");
 
-    /*
-    let doc= fs.readFileSync('./public/datos.json','utf8');
-    console.log(doc);
-    */
 });
 
 
 
 
 
-  const uri = "mongodb+srv://leo87llanca:27870717leo@cluster0.m5xre3g.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://leo87llanca:27870717leo@cluster0.m5xre3g.mongodb.net/?retryWrites=true&w=majority";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -105,9 +110,7 @@ async function run() {
     await client.db("myDB").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
-    // Ensures that the client will close when you finish/error
-   //await client.close();
-
+    
   }
 }
 run().catch(console.dir);

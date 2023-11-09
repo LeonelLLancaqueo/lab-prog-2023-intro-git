@@ -35,7 +35,7 @@ function cargarRefugios (datos)  {
 
             
           
-            enlace.href="/pagina-refugio/refugio.html?id="+refugio.id; 
+            enlace.href="/refugio/"+refugio.id; 
 
             let nombre= document.createElement("h3");
             nombre.textContent= refugio.nombre;

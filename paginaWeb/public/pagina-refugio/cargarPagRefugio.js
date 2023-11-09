@@ -1,16 +1,25 @@
 
+    
+    /*
+    const paramURL =window.location.search;
+    console.log(window.location.search)
 
-paramURL=window.location.search;
-
-const objParametro= new URLSearchParams(paramURL);
-
-
-const idRefugio= parseInt(objParametro.get('id'),10);
-
+    const objParametro= new URLSearchParams(paramURL);
 
 
+    const idRefugio= parseInt(objParametro.get('id'),10);
 
+    console.log("parametro id" + idRefugio);
+    */
+
+    const idRefugio= document.getElementById('idRefugio').textContent;
 document.addEventListener('DOMContentLoaded',() =>{
+    
+    
+    
+    
+
+    
     fetch('refugios.json').then(
         data => {
             return data.json()
@@ -39,6 +48,6 @@ function cargarRefugio(refugio){
     li_img2.appendChild(img2);
     li_img3.appendChild(img3);
 
-    form_action.action="refugio.html?id="+idRefugio;
+    form_action.action="/refugio/"+idRefugio;
     
 }

@@ -3,7 +3,7 @@ const footer= document.querySelector(".nav-footer");
 
 
 document.addEventListener('DOMContentLoaded',() =>{
-    fetch('info_footer.json').then(
+    fetch('/refugio/info_footer.json').then(
         data => {
             return data.json()
         }).then(datos =>{
