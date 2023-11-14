@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/refugio/slide.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/slide.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -14,9 +14,9 @@
     </header>
     <div class="slide">
         <ul>
-            <li id="slide-img1"></li>
-            <li id="slide-img2"></li>
-            <li id="slide-img3"></li>
+            <li id="slide-img1"> <img src= <%= img1%> alt=""> </li>
+            <li id="slide-img2"> <img src= <%= img2%> alt=""> </li>
+            <li id="slide-img3"> <img src= <%= img3%> alt=""></li>
         </ul>
         
 
@@ -24,7 +24,7 @@
 
     </div>
     
-    <p id="idRefugio"><%= id%></p>
+
     <br>
     <br>
     <br>
@@ -45,7 +45,7 @@
        
     </table>
    
-    <form class="form-person"  method="post" >
+    <form class="form-person"  method="post" action="/refugio/"<%= idRefugio%> >
 
         <h2>SUBISTE EL REFUGIO?</h2>
         <h3>Registrarme</h3>
@@ -82,9 +82,9 @@
 
     
     
-    <script src="/refugio/cargarPagRefugio.js"></script>
-    <script src="/refugio/cargarNav.js"></script>
-    <script src="/refugio/cargarFooter.js"></script>
+    <!-- <script src="refugio/cargarPagRefugio.js"></script> -->
+    <script src="../cargarNav.js"></script>
+    <script src="../cargarFooter.js"></script>
     <!--<script src="form_person.js"></script> --> 
 
 

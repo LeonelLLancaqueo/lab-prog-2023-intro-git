@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
 
 
-    fetch('datos.json').then(
+    fetch('/info-refugios').then(
         data => {
             return data.json()
         }).then(datos =>{
@@ -35,7 +35,9 @@ function cargarRefugios (datos)  {
 
             
           
-            enlace.href="/refugio/"+refugio.id; 
+            enlace.href="/refugio/"+refugio.id;
+            
+            
 
             let nombre= document.createElement("h3");
             nombre.textContent= refugio.nombre;
