@@ -92,25 +92,7 @@ router.get( "/info-refugios", async (req,res) =>{
   });
 
   
-  router.get( '/refugio/:id', async (req,res) =>{
-    /*
-  try{
-    const refugios= await client.db("myDB").collection('refugios_content').find({id: req.params.id}).toArray();
-    console.log(refugios);
-  
-  res.send(refugios).status(200); 
-    
-  }catch(errr){
-    console.log("Error");  
-    return res.status(404)
-  }
-  */
-  
-  
-   //res.render('refugio', {id : req.params.id})    
-   res.render('refugio')
-   
-  });
+ 
 
 
   module.exports = router
