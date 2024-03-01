@@ -9,6 +9,8 @@ const port= '3000';
   //routing
 const refugios_router= require('./routing/refugios-router')
 
+const personas_router= require('./routing/personas-router')
+
 const path= require('path')
 
 
@@ -25,7 +27,9 @@ app.use(express.urlencoded({extended: true}))
 
 //routing
 
-app.use('/', refugios_router)
+app.use('/', refugios_router);
+
+app.use('/personas', personas_router);
 
 app.listen(port, function () {
     console.log("server on port " + port);

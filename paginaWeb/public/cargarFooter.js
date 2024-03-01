@@ -3,7 +3,7 @@ const footer= document.querySelector(".nav-footer");
 
 
 document.addEventListener('DOMContentLoaded',() =>{
-    fetch('/info_footer').then(
+    fetch('footer.json').then(
         data => {
             return data.json()
         }).then(datos =>{
@@ -16,9 +16,10 @@ function cargarFooter(datos){
     
     datos.forEach(
         
-        
+        /*creamos las columnas del footer */
         (columna) => {
-            /*creamos las columnas del footer */
+            
+            // para cada columna creamos un dvi que contendra la informacion
             
             const div_separador= document.createElement("div");
             div_separador.className="ul-nav-footer";

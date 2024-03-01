@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
 
 
-    fetch('/info-refugios').then(
+    fetch('/refugios').then(
         data => {
             return data.json()
         }).then(datos =>{
