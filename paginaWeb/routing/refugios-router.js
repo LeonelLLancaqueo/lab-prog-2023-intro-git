@@ -31,7 +31,24 @@ router.get( "/refugios", async (req,res) =>{
  
     try{
       const refugios= await database.collection('refugios_content').find({}).toArray();  
-      return res.send(refugios).status(200); 
+      
+      const page= parseInt(req.query.page);
+      const pageSize= parseInt(req.query.pageSize);
+  
+  
+      //calculamos el inicio y fin de los indices para la paquina requerida
+      const startIndex = (page - 1) * pageSize;
+      const endIndex = page * pageSize;
+  
+      //Slice the products array based on the indexes
+        const paginatedRefugios = refugios.slice(startIndex, endIndex);
+        
+      //Calculate the total number of pages
+        const totalPages = Math.ceil(refugios.length / pageSize); 
+  
+        
+  
+      res.json({refugios: paginatedRefugios, totalPages});
     
     }catch(errr){
       console.log("Error");  
@@ -52,13 +69,27 @@ router.get( "/refugios", async (req,res) =>{
     try{
       const refugios= await database.collection('refugios_img').findOne({id: req.params.id});
 
-      const persons= await database.collection('person').find({}).toArray();
+      const persons= await database.collection('person').find({}).toArray(); //preguntar si esta bien esto
 
   
       res.render('refugio', {img1 : refugios.img, img2 : refugios.img2, img3 : refugios.img3, idRefugio: "/refugio/"+refugios.id, personArray: persons})
       
     }catch(err){
       console.log("Error"+err);  
+      return res.status(404)
+    }
+
+  
+  });
+
+  router.get( '/refugio-content/:id', async (req,res) =>{
+      
+    try{
+      const refugio= await database.collection('refugios_content').findOne({id: req.params.id}); 
+      return res.send(refugio).status(200); 
+    
+    }catch(errr){
+      console.log("Error");  
       return res.status(404)
     }
 

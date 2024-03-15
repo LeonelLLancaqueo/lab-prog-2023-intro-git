@@ -28,12 +28,11 @@ async function postPersona(persona){
         body: JSON.stringify(persona),
         headers:{
             "Content-Type": "application/json; charset=UTF-8"
-        }
+            }
        }).then(response =>{
             return response.json();
        }).then(personaJson =>{
 
-            console.log(personaJson);
 
             const table= document.getElementById("table_person")
             
