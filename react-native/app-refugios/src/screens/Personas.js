@@ -97,7 +97,6 @@ const styles= StyleSheet.create({
     },
     itemPersona:{
         marginBottom: 10,
-        
     },
 
 });

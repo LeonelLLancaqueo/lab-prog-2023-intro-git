@@ -34,7 +34,9 @@ router.get( "/refugios", async (req,res) =>{
       
       const page= parseInt(req.query.page);
       const pageSize= parseInt(req.query.pageSize);
-  
+      
+      console.log("page: "+ page);
+      console.log("pageSize: "+ pageSize);
   
       //calculamos el inicio y fin de los indices para la paquina requerida
       const startIndex = (page - 1) * pageSize;
@@ -45,8 +47,9 @@ router.get( "/refugios", async (req,res) =>{
         
       //Calculate the total number of pages
         const totalPages = Math.ceil(refugios.length / pageSize); 
-  
-        
+      
+        console.log("paginedRefugios: "+ paginatedRefugios);
+        console.log("totalPage: "+ totalPages);
   
       res.json({refugios: paginatedRefugios, totalPages});
     

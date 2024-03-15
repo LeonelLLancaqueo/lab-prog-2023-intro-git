@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CardRefugio= ()=>{
 
-    const [isLoading, setLoading]= useState(true);
+    const [isLoading, setLoading]= useState(false);
     const [refugio, setRefugio]= useState([]);
 
     const [totalPages, setTotalPages]= useState(0);
@@ -17,37 +17,50 @@ const CardRefugio= ()=>{
     
     //hacemos un fetch a la api local
     const getRefugio= async (page) =>{
+        
+        console.log("cuantas veces se llama al metodo?"); //hace muchas peticiones
+        if(currentPage === totalPages||isLoading){ //problema de concurrencia
+            console.log("cuantas veces retorna nada? ");
+            return;
+        }
+        
         try {
             
+            setLoading(true);
 
             const consultaApiRefugio= await fetch(`http://192.168.1.48:3000/refugios?page=${page}&pageSize=2`)
             .then(response => response.json())
             .then (refugioJson => {
+                // actualizamos el contador de paginas si es que no es la pagina final
+                
+                
+             
                 setRefugio((preloadElements)=>{
-                    console.log(refugioJson.refugios);
+                    
+                    
                     return [...preloadElements, ...refugioJson.refugios];
                 });
+                
                 setTotalPages(refugioJson.totalPages);
             })
 
+            
 
         } catch (error) {
             console.error(error);
         }finally{
+
+            setCurrentPage(currentPage + 1);
+                        
             setLoading(false);
         }
         
     }
-
-    const hanldeNextPage= ()=>{
-        if(currentPage < totalPages){
-            setCurrentPage(currentPage + 1);
-        }
-    }
    
     useEffect(()=>{
         getRefugio(currentPage);
-    },[currentPage]);
+        
+    },[currentPage]); 
 
     return(
         
@@ -59,21 +72,21 @@ const CardRefugio= ()=>{
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={({id}) => id}
+                    onEndReached={() => getRefugio(currentPage)}
+                    //onEndReachedThreshold={1}
                     renderItem={({item}) => (
                         <View style= {styles.listaRefugios}>
-
-                            {isLoading && <ActivityIndicator/>}
-
                             <Text style= {styles.tituloRefugio}>{item.nombre} </Text>  
                             <Image  style={styles.imageRefugio} source={{uri:item.url ,}}/>
                             <Text style= {styles.descriptionText}>{item.descripcion}</Text>
                         </View>
                         
                     )}
+                    ListFooterComponent={()=>{
+                        !isLoading && <ActivityIndicator/>
+                    }}   
                 />
-                <Pressable style={styles.loadMoreButtom} onPress={hanldeNextPage} disabled={currentPage === totalPages}>
-                    <Text>Load More</Text>
-                </Pressable>
+
             </SafeAreaView>
                               
             

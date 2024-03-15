@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet } from 'react-native';
 import Home from './src/screens/Home';
 import Refugio from './src/screens/Refugio';
