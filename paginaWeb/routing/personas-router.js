@@ -48,35 +48,31 @@ router.post('/', async(req,res)=>{
           
   
 })
-router.get('/', async(req,res)=>{
 
-  
+
+router.get('/', async(req,res)=>{
+  //obtenemos personas de acuerdo a la pagina y cantidad
 
   try{
-
-    const persons= await database.collection('person').find({}).toArray();
     
     const page= parseInt(req.query.page);
     const pageSize= parseInt(req.query.pageSize);
 
 
-    //calculamos el inicio y fin de los indices para la paquina requerida
+    //calculamos el inicio  para la paquina requerida
     const startIndex = (page - 1) * pageSize;
-    const endIndex = page * pageSize;
 
-    //Slice the products array based on the indexes
-      const paginatedPersons = persons.slice(startIndex, endIndex);
+    //agrego limit and skip 
+    const persons= await database.collection('person').find({}).skip(startIndex).limit(pageSize).toArray();
+    
+    const totalPersons= await database.collection('person').countDocuments(); 
       
     //Calculate the total number of pages
-      const totalPages = Math.ceil(persons.length / pageSize); 
+      const totalPages = Math.ceil(totalPersons / pageSize); 
 
-      
 
-    res.json({persons: paginatedPersons, totalPages});
+    res.json({persons: persons, totalPages});
     
-
-
-    //return res.send(persons).status(200);
 
   }catch(err){
     console.log("Error"+err);  

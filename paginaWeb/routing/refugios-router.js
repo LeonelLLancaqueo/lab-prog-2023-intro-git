@@ -30,28 +30,25 @@ const { isUtf8 } = require('buffer');
 router.get( "/refugios", async (req,res) =>{
  
     try{
-      const refugios= await database.collection('refugios_content').find({}).toArray();  
+      
       
       const page= parseInt(req.query.page);
       const pageSize= parseInt(req.query.pageSize);
-      
-      console.log("page: "+ page);
-      console.log("pageSize: "+ pageSize);
-  
-      //calculamos el inicio y fin de los indices para la paquina requerida
+     
+      //calculamos el inicio para la paquina requerida
       const startIndex = (page - 1) * pageSize;
-      const endIndex = page * pageSize;
-  
-      //Slice the products array based on the indexes
-        const paginatedRefugios = refugios.slice(startIndex, endIndex);
+      
+      
+      const refugios= await database.collection('refugios_content').find({}).skip(startIndex).limit(pageSize).toArray();  
+
+      const totalrefugios= await database.collection('refugios_content').countDocuments();  
+
         
       //Calculate the total number of pages
-        const totalPages = Math.ceil(refugios.length / pageSize); 
+        const totalPages = Math.ceil(totalrefugios / pageSize); 
       
-        console.log("paginedRefugios: "+ paginatedRefugios);
-        console.log("totalPage: "+ totalPages);
-  
-      res.json({refugios: paginatedRefugios, totalPages});
+
+      res.json({refugios: refugios, totalPages});
     
     }catch(errr){
       console.log("Error");  
@@ -75,7 +72,8 @@ router.get( "/refugios", async (req,res) =>{
       const persons= await database.collection('person').find({}).toArray(); //preguntar si esta bien esto
 
   
-      res.render('refugio', {img1 : refugios.img, img2 : refugios.img2, img3 : refugios.img3, idRefugio: "/refugio/"+refugios.id, personArray: persons})
+      res.render('refugio', {img1 : refugios.img, img2 : refugios.img2, img3 : refugios.img3, idRefugio: "/refugio/"+refugios.id, 
+      personArray: persons})
       
     }catch(err){
       console.log("Error"+err);  

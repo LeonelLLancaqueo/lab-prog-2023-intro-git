@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 
-import {View, Text, StyleSheet, Image, ActivityIndicator} from "react-native";
+import {View, StyleSheet, ActivityIndicator} from "react-native";
 
+import url from "../../components/urlApi";
 
+import Card from "../../components/Card/Card"
 
-
+import styles from './styles';
 
 const Refugio= ({route})=>{
     const [isLoading, setLoading]= useState(true);
@@ -13,7 +15,7 @@ const Refugio= ({route})=>{
 
 
 
-    let path= 'http://192.168.1.48:3000/refugio-content/'+route.params.id;
+    let path= url+'refugio-content/'+route.params.id;
     
     
     //hacemos un fetch a la api local
@@ -50,12 +52,7 @@ const Refugio= ({route})=>{
                     <ActivityIndicator/>
                 ):(
                     <View style={styles.containerRefugio}>
-                        <Text style={styles.tituloRefugio}>{refugio.nombre}</Text>
-                        <Image style={{height: 300, width:300}} source={{uri: refugio.url, }}/>
-                        <Text style={styles.descriptionText}>{refugio.altura}</Text>
-                        <Text style={styles.descriptionText}>{refugio.descripcion}</Text>
-                        <Text style={styles.descriptionText}>{refugio.dificultad}</Text>
-                        
+                        <Card nombre={refugio.nombre} url={refugio.url} descripcion={refugio.descripcion} />
                     </View>             
                 )
             }
@@ -64,27 +61,7 @@ const Refugio= ({route})=>{
     )
 }
 
-const styles= StyleSheet.create({
-    container:{
-        flex: 1,
-        backgroundColor: '#71092d',
-    },
-    containerRefugio:{
-        alignItems:'center',
-        textAlign:'center',
-        
-    },
 
-    descriptionText:{
-        color:'#ccc',
-    },    
-    tituloRefugio:{
-        fontSize: 30,
-        color:'#fff',
-
-    }
-
-});
 
 
 export default Refugio;

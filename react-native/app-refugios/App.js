@@ -1,10 +1,10 @@
 
 import { StyleSheet } from 'react-native';
-import Home from './src/screens/Home';
-import Refugio from './src/screens/Refugio';
-import PersonForm from './src/screens/PersonForm';
+import Home from './src/screens/Home/Home';
+import Refugio from './src/screens/Refugio/Refugio';
+import PersonForm from './src/screens/PersonForm/PersonForm';
 
-import Personas from './src/screens/Personas';
+import Personas from './src/screens/Personas/Personas';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
