@@ -4,6 +4,8 @@ import {View, Text, TextInput, SafeAreaView, Pressable} from "react-native";
 
 import styles from "./styles"
 
+import url from "../../components/urlApi";
+
 const PersonForm= ()=>{
 
     const [textNombre, onchangetextNombre]= useState('');
@@ -23,7 +25,7 @@ const PersonForm= ()=>{
         } 
 
         
-        const baseUrl= 'http://192.168.1.48:3000/personas';  
+        const baseUrl= url+'personas';  
 
         const response = await fetch(baseUrl,{
             method: 'POST',

@@ -1,4 +1,4 @@
-import {View, Text, FlatList, ActivityIndicator, Pressable} from "react-native";
+import {View, FlatList, ActivityIndicator} from "react-native";
 
 import {useEffect, useState} from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';

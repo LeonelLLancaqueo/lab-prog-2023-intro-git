@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import {View, FlatList, ActivityIndicator,Pressable} from 'react-native';
+import {View, FlatList, ActivityIndicator} from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -24,7 +24,7 @@ const CardRefugio= ()=>{
     const getRefugio= async (page) =>{
         
         
-        if(currentPage === totalPages||isLoading){ //problema de concurrencia
+        if(currentPage === totalPages||isLoading){ 
             
             return;
         }
@@ -33,17 +33,12 @@ const CardRefugio= ()=>{
             
             setLoading(true);
 
-            // importar la url de fetch desde otro archivo
-            //tener pageSize en una variable 
 
 
             const consultaApiRefugio= await fetch(urlApi+`refugios?page=${page}&pageSize=${pageSize}`)
             .then(response => response.json())
             .then (refugioJson => {
-                // actualizamos el contador de paginas si es que no es la pagina final
-                
-                
-             
+    
                 setRefugio((preloadElements)=>{
                     
                     

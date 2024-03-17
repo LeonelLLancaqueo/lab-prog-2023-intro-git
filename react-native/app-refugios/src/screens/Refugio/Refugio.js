@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {View, StyleSheet, ActivityIndicator} from "react-native";
+import {View, ActivityIndicator} from "react-native";
 
 import url from "../../components/urlApi";
 
