@@ -8,6 +8,7 @@ Instrucciones de uso:
 - otro con la carpeta “react-native/app-refugios”
 
 3 - Instalar dependencias utilizadas en el proyecto react-native:
+
 	- npm install expo
 
     - npx expo install @react-navigation react-native-gesture-handler react-native-reanimated react-dom react-native-web @expo/metro-runtime react-native-screens react-native-safe-area-context react-native-paper axios
